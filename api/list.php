@@ -13,10 +13,11 @@ $db = $database->getConnection();
 // query bezienswaardigheden
 $query = "SELECT 
             id,
-            locatie,
-            beschrijving
-          FROM bezienswaardigheden
-          ORDER BY locatie";
+            name,
+            comment,
+            created_at
+          FROM comments
+          ORDER BY created_at DESC";
 
 $stmt = $db->prepare($query);
 $stmt->execute();
@@ -25,31 +26,32 @@ $num = $stmt->rowCount();
 
 if ($num > 0) {
 
-    $bezienswaardigheden_arr = array();
-    $bezienswaardigheden_arr["records"] = array();
+    $comments_arr = array();
+    $comments_arr["records"] = array();
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         extract($row);
 
         $item = array(
             "id" => $id,
-            "locatie" => $locatie,
-            "beschrijving" => html_entity_decode($beschrijving)
+            "name" => $name,
+            "comment" => html_entity_decode($comment),
+            "created_at" => $created_at
         );
 
-        array_push($bezienswaardigheden_arr["records"], $item);
+        array_push($comments_arr["records"], $item);
     }
 
     http_response_code(200);
 
-    echo json_encode($bezienswaardigheden_arr);
+    echo json_encode($comments_arr);
 
 } else {
 
     http_response_code(404);
 
     echo json_encode(
-        array("message" => "Geen bezienswaardigheden gevonden.")
+        array("message" => "Geen comments gevonden.")
     );
 }
 ?>

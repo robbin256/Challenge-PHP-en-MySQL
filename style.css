@@ -1,5 +1,201 @@
-#commentForm{
+:root {
+    --ink: #17212b;
+    --muted: #6b7785;
+    --line: #d8e0e7;
+    --surface: #ffffff;
+    --surface-soft: #f4f7f9;
+    --accent: #176b87;
+    --accent-dark: #0f4f65;
+    --shadow: 0 16px 36px rgba(23, 33, 43, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 48px 20px;
+    color: var(--ink);
+    background: linear-gradient(145deg, #eef5f5 0%, #f8fafb 48%, #e9f0f3 100%);
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+video {
+    display: block;
+    width: min(100%, 720px);
+    height: auto;
+    margin: 0 auto 28px;
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+}
+
+.commentSection {
+    width: min(100%, 920px);
+    margin: 0 auto;
+    padding: clamp(22px, 4vw, 42px);
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(216, 224, 231, 0.9);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+}
+
+#commentForm {
+    display: flex;
     flex-direction: column;
-    width: 200px;
-    /* background-color: #f2f2f2; */
+    gap: 12px;
+    max-width: 620px;
+    padding: 22px;
+    background: var(--surface-soft);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+}
+
+#commentForm h4 {
+    margin: 0 0 4px;
+    font-size: 1.2rem;
+    letter-spacing: 0.01em;
+}
+
+#commentForm input,
+#commentForm textarea {
+    width: 100%;
+    padding: 13px 14px;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font: inherit;
+    font-family: Arial, sans-serif;
+    transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+#commentInput {
+    min-height: 100px;
+    resize: vertical;
+}
+
+#commentForm input::placeholder,
+#commentForm textarea::placeholder {
+    color: #84909b;
+}
+
+#commentForm input:focus,
+#commentForm textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(23, 107, 135, 0.15);
+}
+
+#commentForm button {
+    align-self: flex-start;
+    padding: 12px 20px;
+    color: #ffffff;
+    background: var(--accent);
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    font: 600 0.92rem Arial, sans-serif;
+    transition: background 160ms ease, transform 160ms ease;
+}
+
+#commentForm button:hover {
+    background: var(--accent-dark);
+    transform: translateY(-1px);
+}
+
+#commentForm button:focus-visible {
+    outline: 3px solid rgba(23, 107, 135, 0.3);
+    outline-offset: 2px;
+}
+
+#message {
+    min-height: 1.3em;
+    margin: 16px 2px 28px;
+    color: var(--accent-dark);
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+}
+
+.commentSection > h3 {
+    margin: 0 0 16px;
+    font-size: clamp(1.45rem, 3vw, 1.9rem);
+}
+
+#card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+}
+
+.category.comment {
+    min-width: 0;
+}
+
+.card {
+    height: 100%;
+    padding: 20px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-top: 4px solid var(--accent);
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(23, 33, 43, 0.05);
+}
+
+.card h3 {
+    display: inline;
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.card h3 + p {
+    display: inline;
+    margin-left: 8px;
+    color: var(--muted);
+    font: 0.78rem Arial, sans-serif;
+}
+
+.card h3 + p::before {
+    content: "• ";
+    color: var(--accent);
+}
+
+.card h3 ~ p:last-child {
+    margin: 18px 0 0;
+    color: #36424d;
+    font: 1rem/1.6 Arial, sans-serif;
+    overflow-wrap: anywhere;
+}
+
+#loading {
+    margin-top: 18px;
+    color: var(--muted);
+    font: 0.9rem Arial, sans-serif;
+}
+
+.error-msg {
+    padding: 12px 14px;
+    color: #8a302b;
+    background: #fff1f0;
+    border: 1px solid #f0c8c5;
+    border-radius: 8px;
+}
+
+@media (max-width: 520px) {
+    body {
+        padding: 20px 12px;
+    }
+
+    .commentSection {
+        padding: 16px;
+        border-radius: 12px;
+    }
+
+    #commentForm {
+        padding: 16px;
+    }
+
+    #commentForm button {
+        width: 100%;
+    }
 }
